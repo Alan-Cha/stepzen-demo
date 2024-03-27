@@ -60,6 +60,74 @@ function startServer(PORT) {
     }
   })
 
+  app.get('/friends/:user_id', (req, res) => {
+    let user_id = req.params['user_id']
+
+    switch (user_id) {
+      case 'alan_cha':
+        res.send([
+          {
+            firstName: "Erik",
+            lastName: "Wittern",
+            friendIds: ["erik-wittern", "JamesD123"],
+            interests: ["graphql", "programming", "MtG", "tennis"]
+          },
+          {
+            firstName: "Guillaume",
+            lastName: "Baudart",
+            friendIds: ["alan_cha", "erik-wittern"],
+            interests: ["research"]
+          },
+          {
+            firstName: "James",
+            lastName: "Davis",
+            friendIds: ["gbaudart", "JamesD123"],
+            interests: ["math problems"]
+          }
+        ])
+        return
+
+      case 'erik-wittern':
+        res.send([
+          {
+            firstName: "James",
+            lastName: "Davis",
+            friendIds: ["gbaudart", "JamesD123"],
+            interests: ["math problems"]
+          }
+        ])
+        return
+
+      case 'gbaudart':
+        res.send([
+          {
+            firstName: "Alan",
+            lastName: "Cha",
+            friendIds: ["erik-wittern", "gbaudart", "JamesD123"],
+            interests: ["graphql", "programming"]
+          }
+        ])
+        return
+
+      case 'JamesD123':
+        res.send([
+          {
+            firstName: "Erik",
+            lastName: "Wittern",
+            friendIds: ["erik-wittern", "JamesD123"],
+            interests: ["graphql", "programming", "MtG", "tennis"]
+          },
+          {
+            firstName: "Alan",
+            lastName: "Cha",
+            friendIds: ["erik-wittern", "gbaudart", "JamesD123"],
+            interests: ["graphql", "programming"]
+          }
+        ])
+        return
+    }
+  })
+
   return new Promise((resolve) => {
     server = app.listen(PORT, () => {
       console.log(`Example API accessible on port ${PORT}`)
