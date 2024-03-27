@@ -1,0 +1,6 @@
+schema
+  @sdl(
+    files: []
+  ) {
+  query: Query
+}
