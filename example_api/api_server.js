@@ -42,7 +42,6 @@ function startServer(PORT) {
 
       case 'gbaudart':
         res.send({
-          
           firstName: "Guillaume",
           lastName: "Baudart",
           friendIds: ["alan_cha", "erik-wittern"],
@@ -50,11 +49,10 @@ function startServer(PORT) {
         })
         return
 
-      case 'gbaudart':
+      case 'JamesD123':
         res.send({
-          
-          firstName: "Guillaume",
-          lastName: "Baudart",
+          firstName: "James",
+          lastName: "Davis",
           friendIds: ["gbaudart", "JamesD123"],
           interests: ["math problems"]
         })
@@ -84,7 +82,12 @@ function stopServer() {
 
 // If run from command line, start server:
 if (require.main === module) {
-  startServer(3000)
+  let port = process.env.PORT;
+  if (port == null || port == "") {
+    port = 8000;
+  }
+
+  startServer(port)
 }
 
 module.exports = {
